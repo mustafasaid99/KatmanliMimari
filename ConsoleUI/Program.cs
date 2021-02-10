@@ -14,8 +14,9 @@ namespace ConsoleUI
             {
                 Console.WriteLine(item.ProductName);
                 Console.WriteLine(item.CategoryId);
-          
-                
+                Console.WriteLine(item.CategoryId);
+
+
 
             }
             
