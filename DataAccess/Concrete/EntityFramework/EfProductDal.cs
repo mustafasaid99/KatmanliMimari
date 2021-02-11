@@ -1,5 +1,7 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,52 +11,25 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfProductDal : IProductDal
+    public class EfProductDal : EfEntityRepositoryBase<Product, NorthwindContex>, IProductDal
     {
-        public void Add(Product entity)
+        public List<ProductDetailDto> GetProductDetails()
         {
-            using (NorthwindContex contex=new NorthwindContex())
+            using (NorthwindContex context= new NorthwindContex())
             {
-                var addedEntity = contex.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                contex.SaveChanges();
+                var result = from p in context.Products
+                             join c in context.Categories
+                             on p.CategoryId equals c.CategoryId
+                             select new ProductDetailDto
+                             {
+                                 ProductId = p.ProductId,
+                                 CategoryName = c.CategoryName,
+                                 UnitsInStock = p.UnitsInStock,
+                                 ProductName = p.ProductName
+                             };
+                return result.ToList();
             }
-        }
-
-        public void Delete(Product entity)
-        {
-            using (NorthwindContex contex = new NorthwindContex())
-            {
-                var deletedEntity = contex.Entry(entity);
-                deletedEntity.State = EntityState.Deleted;
-                contex.SaveChanges();
-            }
-        }
-
-        public Product Get(Expression<Func<Product, bool>> filter)
-        {
-            using(NorthwindContex context=new NorthwindContex())
-            {
-                return context.Set<Product>().SingleOrDefault(filter);
-            }
-        }
-
-        public List<Product> GetAll(Expression<Func<Product, bool>> filter = null)
-        {
-            using (NorthwindContex contex = new NorthwindContex())
-            {
-                return filter == null ? contex.Set<Product>().ToList() : contex.Set<Product>().Where(filter).ToList();
-            }
-        }
-
-        public void Update(Product entity)
-        {
-            using (NorthwindContex contex = new NorthwindContex())
-            {
-                var updatedEntity = contex.Entry(entity);
-                updatedEntity.State = EntityState.Modified;
-                contex.SaveChanges();
-            }
+      
         }
     }
 }
