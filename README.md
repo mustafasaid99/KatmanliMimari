@@ -3,6 +3,7 @@
 -C#,( .Net Core)<br/> 
 -Katmanlı Kurumsal Yazılım Mimari <br/> 
 -SOLİD prensipleri<br/> 
+-AOP teknikleri<br/> 
 -Web Api<br/> 
 -EntityFrameWork <br/> 
 -Nesne Yönelimli Programlama(OOP) <br/> 
