@@ -1,5 +1,5 @@
 # KatmanliMimari
-##İçindekiler
+## İçindekiler
 -C#,( .Net Core)<br/> 
 -Katmanlı Kurumsal Yazılım Mimari <br/> 
 -SOLİD yazılım kuralları<br/> 
