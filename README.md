@@ -2,7 +2,7 @@
 ## İçindekiler
 -C#,( .Net Core)<br/> 
 -Katmanlı Kurumsal Yazılım Mimari <br/> 
--SOLİD yazılım kuralları<br/> 
+-SOLİD prensipleri<br/> 
 -Web Api<br/> 
 -EntityFrameWork <br/> 
 -Nesne Yönelimli Programlama(OOP) <br/> 
